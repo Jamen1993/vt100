@@ -1,30 +1,19 @@
 project VT100 is
 
-  Version := "0.1";
+   for Languages use ("Ada");
+   for Source_Dirs use ("src");
+   for Object_Dir use "build";
 
-  for Languages use ("Ada");
-  for Source_Dirs use ("src");
-  for Object_Dir use "obj";
-  for Library_Name use "vt100";
-  for Library_Dir use "lib";
-  for Library_Kind use "dynamic";
-  for Library_Version use "libvt100.so." & Version;
-  for Source_Files use ("vt100.ads", "vt100.adb",
-                        "vt100-utils.ads", "vt100-utils.adb");
+   for Library_Name use "vt100";
+   for Library_Kind use "static";
+   for Library_Dir use "lib";
 
-  package Compiler is
-    CPU := external ("CPU", "-m64 -mssse3 -march=native -fPIC");
-    OPT   := ("-O3", "-fomit-frame-pointer");
-    WARN  := ("-Wall");
-    STYLE := ("-gnaty2aAbdefhiklM80nOprSux");
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnatyy", "-gnatyM100", "-gnatwa.n", "-gnatf", "-gnato", "-gnata", "-gnatVa", "-O3");
+   end Compiler;
 
-    Ada_Switches := ("-gnat05", "-gnata", "-gnatE", "-gnato", "-fstack-check");
-    for Default_Switches ("Ada") use Ada_Switches & CPU & OPT & WARN & STYLE;
+   package Builder is
+      for Switches ("ada") use ("-j0");
+   end Builder;
 
-    C_Switches := ("-O3", "-C99", "-fstack-check");
-    for Default_Switches ("C") use C_Switches & CPU & OPT & WARN;
-
-    Fortran_Switches := ();
-    for Default_Switches ("Fortran") use Fortran_Switches & CPU & OPT & WARN;
-  end Compiler;
 end VT100;

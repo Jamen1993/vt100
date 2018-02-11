@@ -17,12 +17,13 @@
 -- or in connection with the use or performance of this software.           --
 ------------------------------------------------------------------------------
 -- Utility subprograms for ANSI/VT100 API wrapper
+
 package VT100.Utils is
 
-  function Lines return Natural;
-  -- return number of lines displayed on screen
+   function Lines return Natural;
+   --  return number of lines displayed on screen
 
-  function Columns return Natural;
-  -- return number of column displayed on screen
+   function Columns return Natural;
+   --  return number of column displayed on screen
 
 end VT100.Utils;

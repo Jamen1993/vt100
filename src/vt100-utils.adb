@@ -19,33 +19,33 @@
 with Ada.Environment_Variables;
 package body VT100.Utils is
 
-        ---------------
-        -- L I N E S --
-        ---------------
+   ---------------
+   -- L I N E S --
+   ---------------
 
-  function Lines return Natural
-  is
-  begin
-    if Ada.Environment_Variables.Exists ("LINES") then
-      return Natural'Value (Ada.Environment_Variables.Value (Name => "LINES"));
-    else
-      return 0;
-    end if;
-  end Lines;
+   function Lines return Natural
+   is
+   begin
+      if Ada.Environment_Variables.Exists ("LINES") then
+         return Natural'Value (Ada.Environment_Variables.Value (Name => "LINES"));
+      else
+         return 0;
+      end if;
+   end Lines;
 
-        -------------------
-        -- C O L U M N S --
-        -------------------
+   -------------------
+   -- C O L U M N S --
+   -------------------
 
-  function Columns return Natural
-  is
-  begin
-    if Ada.Environment_Variables.Exists ("COLUMNS") then
-      return Natural'Value (Ada.Environment_Variables.Value
-                              (Name => "COLUMNS"));
-    else
-      return 0;
-    end if;
-  end Columns;
+   function Columns return Natural
+   is
+   begin
+      if Ada.Environment_Variables.Exists ("COLUMNS") then
+         return Natural'Value (Ada.Environment_Variables.Value
+                               (Name => "COLUMNS"));
+      else
+         return 0;
+      end if;
+   end Columns;
 
 end VT100.Utils;
